@@ -1,13 +1,90 @@
-body {
+*{
+  margin: 0;
+  padding: 0;
+ }
+ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e3e6e6 !important;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.fs-12{
+  font-size: 12px;
+}
+.fs-13{
+  font-size: 13px;
+}
+.fs-10{
+  font-size: 10px;
+}
+.btn-primary {
+  background-color: #e6e6e6 !important;
+  color: black !important;
+  border: none !important;
+}
+.pro-img{
+  width: 100%;
+  height: 100%;
+}
+.card{
+  border-radius: 0 !important;
+}
+.pro-images{
+  height: 100px;
+}
+.prod-card{
+  padding: 20px;
+  height: 100% !important;
+  cursor: pointer;
+}
+.scroll-img{
+  height: 100%;
+}
+.slide-card{
+  padding: 20px;
+  cursor: pointer;
+}
+.react-multiple-carousel__arrow--right {
+  right: calc(4% + 1px);
+  top: calc(21% + 1px);
+}
+.react-multiple-carousel__arrow--left {
+  left: calc(4% + 1px);
+  top: calc(21% + 1px);
+}
+/* .under{
+  position: absolute;
+  top: 0;
+}*/
+.over{
+  position: relative;
+  top: -300px;
+}
+.react-multiple-carousel__arrow {
+    position: absolute;
+    outline: 0;
+    transition: all .5s;
+    border-radius: 20px;
+    z-index: 1000;
+    border: 0;
+    background: rgba(0, 0, 0, 0.5);
+    min-width: 50px;
+    min-height: 100px;
+    opacity: 1;
+    cursor: pointer;
+}
+.btn-back{
+  background-color: #37475a !important;
+}
+.footer-list{
+  list-style-type: none !important;
 }
