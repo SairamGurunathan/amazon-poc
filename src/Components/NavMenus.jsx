@@ -1,9 +1,9 @@
 import React from 'react'
 
-const NavMenus = ({icon,line1,line2}) => {
+const NavMenus = ({icon,line1,line2,onClick}) => {
   return (
     <>
-    <div className='d-flex align-items-center text-white menu'>
+    <div className='d-flex align-items-center text-white menu' onClick={onClick}>
     <div className='fs-4'>
         {icon}
     </div>

@@ -36,6 +36,7 @@ code {
 }
 .card{
   border-radius: 0 !important;
+  border: none !important ;
 }
 .pro-images{
   height: 100px;
