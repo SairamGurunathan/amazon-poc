@@ -9,7 +9,7 @@ import NavIcons from "./NavIcons";
 const NaviBar = () => {
   return (
     <Navbar expand="lg" className="bg-dark gap-3 sticky-top">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="#home" className="menu">
         <img
           alt="logo"
           src={Logo}

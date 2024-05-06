@@ -28,7 +28,7 @@ const HomePage = () => {
           <Col lg={12} className='p-2'>
             <div className='d-flex flex-row align-items-center'>
               <h3>Up to 80% off | Deals on mobile accessories</h3>
-              <Link className='text-decoration-none ps-3'><small className='fs-14'>Explore more</small></Link>
+              <Link className='text-decoration-none ps-3'><small className='fs-14 card-link link-hover'>Explore more</small></Link>
             </div>
             <SlideSHowList imageList={productImgList} slide={6} item={6}/>
           </Col>

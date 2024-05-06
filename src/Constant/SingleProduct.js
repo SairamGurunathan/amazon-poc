@@ -9,6 +9,11 @@ import tv2 from '../Assets/multi product/43_inch_PC_QC_186x116._SY116_CB55808725
 import tv3 from '../Assets/multi product/55_inch_PC_QC_186x116._SY116_CB558087256_.jpg'
 import tv4 from '../Assets/multi product/65_inch_PC_QC_186x116._SY116_CB558087256_.jpg'
 import img3 from '../Assets/PC_CC_379x304._SY304_CB557896466_.jpg'
+import deal1 from '../Assets/deals/51YMb2YgqZL._AC_SY145_.jpg'
+import deal2 from '../Assets/deals/711rRUziI5L._AC_SY145_.jpg'
+import deal3 from '../Assets/deals/71tO5TC44LL._AC_SY145_.jpg'
+import deal4 from '../Assets/deals/81H7FJtH4SL._AC_SY145_.jpg'
+import img4 from '../Assets/PC_CC_379x304._SY304_CB559442127_.jpg'
 export const productList = [
     {
     heading : 'Shop all deals',
@@ -83,6 +88,35 @@ export const productList = [
 {
     heading : 'Up to 70% off | International brands',
     img : img3,
+    link : 'See all offers'
+},
+{
+    heading : 'Popular Deals',
+    img : [{
+        pro : deal4,
+        price : 'Great Summer Sale',
+        offer : '25% off'
+    },
+    {
+        pro : deal3,
+        price : 'Great Summer Sale',
+        offer : '36% off'
+    },
+    {
+        pro : deal2,
+        price : 'Great Summer Sale',
+        offer : '34% off'
+    },
+    {
+        pro : deal1,
+        price : 'Great Summer Sale',
+        offer : '70% off'
+    }],
+    link : 'See all deals'
+},
+{
+    heading : 'Up to 40% off | Deals on mobiles and accessories',
+    img : img4,
     link : 'See all offers'
 },
 ]
