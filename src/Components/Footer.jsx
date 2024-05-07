@@ -9,12 +9,14 @@ import { AdditionalLink } from "../Constant/AdditonalLinks";
 import { policy } from "../Constant/TermsAndPolicy";
 
 const Footer = () => {
+  const handleBacktoTop = ()=>{ window.scrollTo({top: 0, behavior: 'smooth'});}
   return (
     <><div>
       <ButtonTag
         label={"Back to top"}
         type={"button"}
         className={"btn-back w-100 text-white border-0 rounded-0 py-3"}
+        onClick={handleBacktoTop}
       />
       <div style={{ backgroundColor: "#232f3e" }} className="text-white">
         <Container>

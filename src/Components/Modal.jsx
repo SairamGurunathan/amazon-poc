@@ -9,7 +9,7 @@ const ModalPopup = ({show,setShow,title,body}) => {
     }
   return (
     <>
-    <Modal show={show} animation={false} centered onHide={handleClose}>
+    <Modal show={show} animation={false} centered onHide={handleClose} >
         <Modal.Header style={{backgroundColor:"#f0f2f2"}}>
         <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
