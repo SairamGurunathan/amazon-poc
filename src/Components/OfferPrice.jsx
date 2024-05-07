@@ -7,7 +7,7 @@ const OfferPrice = ({offer,price}) => {
         <span className="badge badge-off border-0 rounded-1 p-2">
           {offer}
         </span>
-        <small className=" fs-12 fw-bold lh-sm">{price}</small>
+        <small className=" fs-12 fw-bold lh-sm text-wrap">{price}</small>
       </div>
     </>
   );

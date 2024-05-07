@@ -8,6 +8,7 @@ import SlideSHowList from '../Components/SlideShowList';
 import { coverImage } from '../Constant/CoverImage';
 import CoverImageSlide from '../Components/CoverImageSlide';
 import { toysImage } from '../Constant/ToysImage';
+import { recommented } from '../Constant/RecommentedList';
 
 const HomePage = () => {
   return (
@@ -25,7 +26,7 @@ const HomePage = () => {
       </Row>
       <Row className='mx-2 px-3'>
         <div className="card my-4 overflow-auto slide-card">
-          <Col lg={12} className='p-2'>
+          <Col lg={12} className='p-3'>
             <div className='d-flex flex-row align-items-center'>
               <h3>Up to 80% off | Deals on mobile accessories</h3>
               <Link className='text-decoration-none ps-3'><small className='fs-14 card-link link-hover'>Explore more</small></Link>
@@ -42,6 +43,17 @@ const HomePage = () => {
               <Link className='text-decoration-none ps-3'><small className='fs-14'>Explore more</small></Link>
             </div>
             <SlideSHowList imageList={toysImage} slide={6} item={6} style={{width:'150px', height:'150px'}}/>
+          </Col>
+        </div>
+      </Row>
+      <Row className='mx-2 px-3'>
+        <div className="card my-4 overflow-auto slide-card">
+          <Col lg={12} className='p-3'>
+            <div className='d-flex flex-row align-items-center'>
+              <h3>Inspired by your browsing history</h3>
+              <Link className='text-decoration-none ps-3'><small className='fs-14'>Explore more</small></Link>
+            </div>
+            <SlideSHowList imageList={recommented} slide={6} item={6} style={{width:'180px', height:'180px'}}/>
           </Col>
         </div>
       </Row>

@@ -97,3 +97,10 @@ code {
 .menu:hover{
   border: 1px solid white !important;
 }
+.link-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+}
