@@ -14,7 +14,7 @@ const ProductCard = ({ heading, img, link }) => {
               <Col key={index} xs={6}>
                 <div className="d-flex flex-column">
                   <img
-                    src={product?.pro}
+                    src={product?.pro || product}
                     alt="product"
                     className="pro-images my-2"
                   />

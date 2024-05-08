@@ -107,3 +107,8 @@ code {
 .canvas-hover:hover{
   background-color: #eaeded !important;
 }
+.result-menu:hover{
+  color: #e47911 !important;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #f90;
+}

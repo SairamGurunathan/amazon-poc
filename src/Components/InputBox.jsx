@@ -1,12 +1,12 @@
-import React from 'react'
-import { FormControl } from 'react-bootstrap'
+import React from "react";
+import { FormControl } from "react-bootstrap";
 
-const InputBox = ({placeholder,className}) => {
+const InputBox = ({ placeholder, className }) => {
   return (
     <>
-    <FormControl placeholder={placeholder} className={className}/>
+      <FormControl placeholder={placeholder} className={className} />
     </>
-  )
-}
+  );
+};
 
-export default InputBox
+export default InputBox;

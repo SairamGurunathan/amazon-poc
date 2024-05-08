@@ -1,0 +1,1 @@
+export const discountOffer = ['10%','25%','35%','50%','60%','70%']

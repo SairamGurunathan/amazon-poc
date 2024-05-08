@@ -1,10 +1,10 @@
 import React from "react";
 
-const StarRating = ({star,review}) => {
+const StarRating = ({ star, review }) => {
   return (
     <div>
-        <span className="fs-4">{star}</span>{" "}
-        <span className="fs-12">{review}</span>
+      <span className="fs-4">{star}</span>{" "}
+      <span className="fs-12">{review}</span>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const SlideSHowList = ({ imageList, slide, style }) => {
     },
   };
 
-  const isMultiProduct = (imageList !== recommented);
+  const isMultiProduct = imageList !== recommented;
 
   return (
     <div style={{ position: "relative" }}>
@@ -46,15 +46,38 @@ const SlideSHowList = ({ imageList, slide, style }) => {
               <img src={item} alt={`Slide ${index + 1}`} style={style} />
             ) : (
               <div className="card p-2 my-3">
-                <img src={item?.image} alt={`Slide ${index + 1}`} style={style} />
+                <img
+                  src={item?.image}
+                  alt={`Slide ${index + 1}`}
+                  style={style}
+                />
                 <div>
-                <Link className="text-decoration-none card-link link-truncate">{item.heading}</Link>
+                  <Link className="text-decoration-none card-link link-truncate">
+                    {item.heading}
+                  </Link>
                 </div>
-                <div><StarRating star={item.rating.star} review={item?.rating?.view}/></div>
-                <div><OfferPrice offer={item?.offer.offer} price={item?.offer?.price}/></div>
+                <div>
+                  <StarRating
+                    star={item.rating.star}
+                    review={item?.rating?.view}
+                  />
+                </div>
+                <div>
+                  <OfferPrice
+                    offer={item?.offer.offer}
+                    price={item?.offer?.price}
+                  />
+                </div>
                 <span>₹{item?.rate}</span>
-                <small className="fs-12">M.R.P: <span className="text-decoration-line-through">₹{item?.mrp}</span></small>
-                <small className="fs-12">Get it by <span className="fw-bold">{item?.date}</span></small>
+                <small className="fs-12">
+                  M.R.P:{" "}
+                  <span className="text-decoration-line-through">
+                    ₹{item?.mrp}
+                  </span>
+                </small>
+                <small className="fs-12">
+                  Get it by <span className="fw-bold">{item?.date}</span>
+                </small>
                 <small className="fs-12">{item?.delivery}</small>
               </div>
             )}

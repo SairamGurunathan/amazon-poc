@@ -4,27 +4,17 @@ import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import OffcanvasMenu from "./OffcanvasMenu";
 import { offcanvasList } from "../Constant/OffcanvasList";
+import { list } from "../Constant/MenuList";
 
 const MenuList = () => {
-  const [show,setShow] = useState(false)
-  const list = [
-    "Fresh",
-    "Amazon miniTV",
-    "Sell",
-    "Best Sellers",
-    "Mobiles",
-    "Today's Deal",
-    "Prime",
-    "Customer Service",
-    "Electronics",
-  ];
-  const handleShow = ()=>setShow(true)
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => setShow(true);
   return (
     <>
       <div
         className="d-flex flex-row text-white gap-2 ps-3 fs-6"
-        style={{ backgroundColor: "#232f3e" }}
-      >
+        style={{ backgroundColor: "#232f3e" }}>
         <NavIcons
           icon={
             <Icon
@@ -45,7 +35,7 @@ const MenuList = () => {
           </Link>
         ))}
       </div>
-      <OffcanvasMenu show={show} menuList={offcanvasList} setShow={setShow}/>
+      <OffcanvasMenu show={show} menuList={offcanvasList} setShow={setShow} />
     </>
   );
 };
