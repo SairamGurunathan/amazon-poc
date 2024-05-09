@@ -21,7 +21,7 @@ const NaviBar = () => {
   return (
     <>
       <Navbar expand="lg" className="bg-dark gap-3 sticky-top">
-        <Navbar.Brand href="#home" className="menu">
+        <Navbar.Brand href="/" className="menu">
           <img
             alt="logo"
             src={Logo}

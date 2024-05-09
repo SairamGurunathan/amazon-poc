@@ -13,7 +13,7 @@ import { additionalProducts } from "../Constant/AdditionalProducts";
 
 const HomePage = () => {
   const navigate = useNavigate()
-
+  
   return (
     <>
       <div className="under">

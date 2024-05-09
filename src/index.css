@@ -102,7 +102,14 @@ code {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
+}
+.des-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
 }
 .canvas-hover:hover{
   background-color: #eaeded !important;
@@ -111,4 +118,7 @@ code {
   color: #e47911 !important;
   padding-bottom: 5px;
   border-bottom: 2px solid #f90;
+}
+.product-details{
+  cursor: pointer;
 }

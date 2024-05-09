@@ -43,7 +43,10 @@ const SlideSHowList = ({ imageList, slide, style }) => {
         {imageList?.map((item, index) => (
           <div key={index}>
             {isMultiProduct ? (
-              <img src={item} alt={`Slide ${index + 1}`} style={style} />
+              <>
+              <img src={item || item?.image} alt={`Slide ${index + 1}`} style={style} />
+              <h5>{item?.name}</h5>
+              </>
             ) : (
               <div className="card p-2 my-3">
                 <img
