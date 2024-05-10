@@ -122,3 +122,6 @@ code {
 .product-details{
   cursor: pointer;
 }
+#magnifier{
+  width: 100%;
+}

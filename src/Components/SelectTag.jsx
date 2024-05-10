@@ -1,16 +1,22 @@
-import React from 'react'
-import { Form } from 'react-bootstrap'
+import React from 'react';
+import { Form } from 'react-bootstrap';
 
-const SelectTag = ({title,option,className}) => {
+const SelectTag = ({ title, option, className, onChange }) => {
+  const handleChange = (e) => {
+    const value = parseInt(e.target.value);
+    onChange(value);
+  };
+
   return (
-    <Form.Select aria-label="Default select example" className={className}>
+    <Form.Select className={className} onChange={handleChange} value={title}>
       <option>{title}</option>
-      {option?.map((opt,index)=>(
-          <option value={index}>{opt}</option>
-      ))
-      }
+      {option?.map((opt, index) => (
+        <option key={index} value={opt}>
+          {opt}
+        </option>
+      ))}
     </Form.Select>
-  )
-}
+  );
+};
 
-export default SelectTag
+export default SelectTag;
