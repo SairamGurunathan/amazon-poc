@@ -12,8 +12,10 @@ import InputBox from "./InputBox";
 import Logo from "../Assets/PngItem_12080.png";
 import NavIcons from "./NavIcons";
 import ModalPopup from "./Modal";
+import { useNavigate } from "react-router-dom";
 
-const NaviBar = () => {
+const NaviBar = ({count}) => {
+  const navigate = useNavigate()
   const [show, setShow] = useState(false);
   const handleLocation = () => {
     setShow(true);
@@ -63,8 +65,9 @@ const NaviBar = () => {
         <NavMenus line1={"Returns"} line2={"& Orders"} />
         <div className="pe-3">
           <NavIcons
-            icon={<Icon icon="bx:cart" className="fs-3" />}
+            icon={<><Icon icon="bi:cart" className="fs-2" style={{color: 'white'}} /><span className="cart-count">{count}</span></>}
             title={"Cart"}
+            onClick={()=>navigate('/cartlist')}
           />
         </div>
       </Navbar>

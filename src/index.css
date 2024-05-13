@@ -125,3 +125,10 @@ code {
 #magnifier{
   width: 100%;
 }
+.cart-count{
+  position: relative !important;
+  left: -23px !important;
+  top: -2px !important;
+  color: red !important;
+  font-weight: bold;
+}

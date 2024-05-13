@@ -5,20 +5,52 @@ import ReactImageMagnify from 'react-image-magnify';
 import SelectTag from '../Components/SelectTag';
 import { useNavigate } from 'react-router-dom';
 
-const SelectedProductPage = ({ selectData,setSelectData, addToCart }) => {
+const SelectedProductPage = ({ selectData, addToCart, setCount,count,quantity,setQuantity,subTotal, setSubTotal}) => {
   const [selectImage, setSelectImage] = useState(selectData?.images[0] || '');
-  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
   const handleImgChange = (i) => {
     setSelectImage(selectData?.images[i]);
   };
 
-const handleCart = () => {
+  const handleBuynow = ()=>{
+      const price = selectData?.price;    
+      const amount = price * 100;
+
+      var options = {
+        key: "rzp_test_GvotXwaXCqSxvf",
+        key_secret:"G3T9c7c9XRtpeygGDZnD0lsu",
+        amount: amount,
+        currency:"INR",
+        name:"STARTUP_PROJECTS",
+        description:"for testing purpose",
+        handler: function(response){
+          alert(response.razorpay_payment_id);
+        },
+        prefill: {
+          name:"sairam",
+          email:"sairam.gurunathan@gmail.com",
+          contact:"9688238114"
+        },
+        notes:{
+          address:"Razorpay Corporate office"
+        },
+        theme: {
+          color:"#3caea3"
+        }
+      };
+      var pay = new window.Razorpay(options);
+      pay.open();
+    }
+
+  const handleCart = () => {
     const subtotal = selectData?.price * quantity;
-    const updatedSelectData = { ...selectData, subtotal };
+    setSubTotal(subtotal);
+    setCount(count + quantity);
+    const updatedSelectData = { ...selectData, subTotal: subtotal };
     addToCart(updatedSelectData);
     navigate('/cartlist');
+    setQuantity(1);
   };
   return (
     <>
@@ -66,7 +98,7 @@ const handleCart = () => {
                   Quantity :{' '}
                   <SelectTag
                     title={quantity}
-                    option={[2, 3, 4, 5]}
+                    option={[1, 2, 3, 4, 5]}
                     className={'w-25'}
                     onChange={(value) => setQuantity(value)}
                   />
@@ -80,7 +112,8 @@ const handleCart = () => {
                     className={'bg-warning border-0 rounded-pill w-100 text-nowrap'}
                     onClick={handleCart}
                   />
-                  <ButtonTag label={'Buy Now'} className={'bg-success border-0 rounded-pill w-100'} />
+                  <ButtonTag label={'Buy Now'} className={'bg-success border-0 rounded-pill w-100'} 
+                  onClick={handleBuynow}/>
                 </div>
               </Col>
             </Row>

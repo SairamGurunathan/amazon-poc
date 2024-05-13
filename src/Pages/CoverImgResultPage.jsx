@@ -108,17 +108,6 @@ const CoverImgResultPage = ({selectData,setSelectData}) => {
           </Col>
           <Col lg={10}>
             <Row>
-              {/* {selectData ? (
-                <>
-                <SelectedProduct
-                  image={selectData?.images}
-                  title={selectData?.title}
-                  description={selectData?.description}
-                  price={selectData?.price}
-                  category={selectData?.category?.name}
-                />
-                </>
-              ) : ( */}
                 <>
                   {category.length > 0
                     ? category.map((result, index) => (
@@ -179,7 +168,6 @@ const CoverImgResultPage = ({selectData,setSelectData}) => {
                         </Col>
                       ))}
                 </>
-              {/* )} */}
             </Row>
           </Col>
         </Row>
