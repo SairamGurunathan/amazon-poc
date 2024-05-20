@@ -13,7 +13,7 @@ const MenuList = () => {
   return (
     <>
       <div
-        className="d-flex flex-row text-white gap-2 ps-3 fs-6"
+        className="d-flex flex-row text-white gap-2 ps-3 fs-6 py-1"
         style={{ backgroundColor: "#232f3e" }}>
         <NavIcons
           icon={

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
 import {
   Button,
@@ -13,12 +13,17 @@ import Logo from "../Assets/PngItem_12080.png";
 import NavIcons from "./NavIcons";
 import ModalPopup from "./Modal";
 import { useNavigate } from "react-router-dom";
+import ProductContext from "./ProductContext";
 
-const NaviBar = ({count}) => {
-  const navigate = useNavigate()
+const NaviBar = () => {
+  const navigate = useNavigate();
+  const { count } = useContext(ProductContext);
   const [show, setShow] = useState(false);
   const handleLocation = () => {
     setShow(true);
+  };
+  const handleAddToCart = () => {
+    navigate("/addToCart");
   };
   return (
     <>
@@ -65,9 +70,18 @@ const NaviBar = ({count}) => {
         <NavMenus line1={"Returns"} line2={"& Orders"} />
         <div className="pe-3">
           <NavIcons
-            icon={<><Icon icon="bi:cart" className="fs-2" style={{color: 'white'}} /><span className="cart-count">{count}</span></>}
+            icon={
+              <>
+                <Icon
+                  icon="bi:cart"
+                  className="fs-2"
+                  style={{ color: "white" }}
+                />
+                <span className="cart-count">{count}</span>
+              </>
+            }
             title={"Cart"}
-            onClick={()=>navigate('/cartlist')}
+            onClick={handleAddToCart}
           />
         </div>
       </Navbar>

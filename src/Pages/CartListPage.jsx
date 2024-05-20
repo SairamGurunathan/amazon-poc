@@ -1,44 +1,17 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardBody, Col, Row } from "react-bootstrap";
 import ButtonTag from "../Components/ButtonTag";
 import { Link, useNavigate } from "react-router-dom";
+import ProductContext from "../Components/ProductContext";
 
-const CartListPage = ({ cartItems, setCount,subTotal, setSubTotal, setCartItems }) => {
+const CartListPage = () => {
   const navigate = useNavigate();
-console.log(subTotal);
+  const { cartItems, setCount,subTotal, setSubTotal, setCartItems } = useContext(ProductContext)
   const handleDeleteCart = () => {
     setCartItems([]);
     setCount(0);
     setSubTotal(0);
-  };
-
-  const handleBuynow = () => {
-    const amountInPaise = subTotal * 100;
-    var options = {
-      key: "rzp_test_GvotXwaXCqSxvf",
-      key_secret: "G3T9c7c9XRtpeygGDZnD0lsu",
-      amount: amountInPaise,
-      currency: "INR",
-      name: "STARTUP_PROJECTS",
-      description: "for testing purpose",
-      handler: function(response) {
-        alert(response.razorpay_payment_id);
-      },
-      prefill: {
-        name: "sairam",
-        email: "sairam.gurunathan@gmail.com",
-        contact: "9688238114"
-      },
-      notes: {
-        address: "Razorpay Corporate office"
-      },
-      theme: {
-        color: "#3399cc"
-      }
-    };
-    var pay = new window.Razorpay(options);
-    pay.open();
   };
 
   return (
@@ -48,7 +21,7 @@ console.log(subTotal);
           <Card>
             <CardBody className="d-flex flex-row justify-content-center align-items-center gap-3">
               <img
-                src={cartItems[0]?.images[0]}
+                src={cartItems?.length > 0 && cartItems[0]?.images[0]}
                 alt="cart"
                 style={{ width: "150px", height: "150px" }}
               />
@@ -59,7 +32,8 @@ console.log(subTotal);
                     style={{ color: "#087e63" }}
                   />
                   Added to Cart
-                </h3>
+                </h3> 
+                <div>
                 <Link
                   to={"/results"}
                   className="text-decoration-none  link-hover card-link"
@@ -67,6 +41,14 @@ console.log(subTotal);
                 >
                   Delete
                 </Link>
+                <span>{' '} | {' '}</span>
+                <Link
+                  to={"/results"}
+                  className="text-decoration-none  link-hover card-link"
+                >
+                  Add items
+                </Link>
+                </div>
               </div>
             </CardBody>
           </Card>
@@ -93,12 +75,12 @@ console.log(subTotal);
                       className={
                         "bg-warning border-0 rounded-pill w-100 text-nowrap"
                       }
-                      onClick={handleBuynow}
+                      onClick={()=>navigate('/checkout')}
                     />
                     <ButtonTag
-                      label={"Back"}
+                      label={"Go to cart"}
                       className={"bg-success border-0 rounded-pill w-100"}
-                      onClick={() => navigate("/product")}
+                      onClick={()=>navigate('/addToCart')}
                     />
                   </div>
                 </CardBody>

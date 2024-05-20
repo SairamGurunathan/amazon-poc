@@ -7,67 +7,48 @@ import HomePage from "./Pages/HomePage";
 import Footer from "./Components/Footer";
 import CoverImgResultPage from "./Pages/CoverImgResultPage";
 import SelectedProductPage from "./Pages/SelectedProductPage";
-import { useState } from "react";
 import CartListPage from "./Pages/CartListPage";
+import AddtoCartPage from "./Pages/AddtoCartPage";
+import { ProductProvider } from "./Components/ProductContext";
+import StepperCheckOut from "./Components/Stepper";
 
 function App() {
-  const [selectData, setSelectData] = useState("");
-  const [cartItems, setCartItems] = useState("");
-  const [count, setCount] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const [subTotal, setSubTotal] = useState(0);
-
-  const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-  };
   return (
     <div className="App">
-      <NaviBar count={count} />
+      <ProductProvider>
+      <NaviBar />
       <MenuList />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
           path="/results"
           element={
-            <CoverImgResultPage
-              selectData={selectData}
-              setSelectData={setSelectData}
-            />
+            <CoverImgResultPage/>
           }
         />
         <Route
           path="/product"
           element={
-            <SelectedProductPage
-              selectData={selectData}
-              addToCart={addToCart}
-              setSelectData={setSelectData}
-              count={count}
-              setCount={setCount}
-              quantity={quantity}
-              setQuantity={setQuantity}
-              subTotal={subTotal}
-              setSubTotal={setSubTotal}
-            />
+            <SelectedProductPage/>
           }
         />
         <Route
           path="/cartlist"
           element={
-            <CartListPage
-              cartItems={cartItems}
-              setCount={setCount}
-              count={count}
-              quantity={quantity}
-              subTotal={subTotal}
-              setSubTotal={setSubTotal}
-              setCartItems={setCartItems}
-              setQuantity={setQuantity}
-            />
+            <CartListPage/>
           }
+        />
+        <Route 
+        path="/addToCart"
+        element={<AddtoCartPage/>}
+        />
+        <Route 
+        path="/checkout"
+        element={<StepperCheckOut/>}
         />
       </Routes>
       <Footer />
+      </ProductProvider>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { toysMenuList } from "../Constant/ToysMenuList";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,13 +6,15 @@ import SelectTag from "../Components/SelectTag";
 import SideBarList from "../Components/SideBarList";
 import axios from "axios";
 import Pagination from "../Components/Pagination";
+import ProductContext from "../Components/ProductContext";
 
-const CoverImgResultPage = ({selectData,setSelectData}) => {
+const CoverImgResultPage = () => {
   const [allData, setAllData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const limitValue = 12;
   const [category, setCategory] = useState([]);
+  const {selectData,setSelectData} = useContext(ProductContext)
   const navigate = useNavigate()
 
   const fetchData = async () => {
@@ -27,11 +29,6 @@ const CoverImgResultPage = ({selectData,setSelectData}) => {
     const product = await axios.get("https://api.escuelajs.co/api/v1/products");
     setTotalCount(product?.data?.length);
   };
-  useEffect(() => {
-    fetchData();
-    allProducts();
-    // eslint-disable-next-line
-  }, [pageNumber]);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -61,6 +58,11 @@ const CoverImgResultPage = ({selectData,setSelectData}) => {
     setCategory(result?.data);
   };
 
+  useEffect(() => {
+    fetchData();
+    allProducts();
+    // eslint-disable-next-line
+  }, [pageNumber]);
 
   return (
     <>
@@ -131,6 +133,15 @@ const CoverImgResultPage = ({selectData,setSelectData}) => {
                               {result?.description}
                             </small>
                           </div>
+                            <small className="mt-2">
+                            Category :{" "}
+                            <Link
+                              className="fs-6 fw-bold card-link text-decoration-none"
+                              onClick={()=>setCategory([])}
+                            >
+                              All Category
+                            </Link>
+                          </small>
                         </Col>
                       ))
                     : allData.length > 0 && allData.map((result, index) => (
