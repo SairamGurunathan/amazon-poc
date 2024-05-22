@@ -11,11 +11,13 @@ import CartListPage from "./Pages/CartListPage";
 import AddtoCartPage from "./Pages/AddtoCartPage";
 import { ProductProvider } from "./Components/ProductContext";
 import StepperCheckOut from "./Components/Stepper";
+import LoginPage from "./Pages/LoginPage";
 
 function App() {
   return (
     <div className="App">
-      <ProductProvider>
+      <LoginPage/>
+      {/* <ProductProvider>
       <NaviBar />
       <MenuList />
       <Routes>
@@ -48,7 +50,7 @@ function App() {
         />
       </Routes>
       <Footer />
-      </ProductProvider>
+      </ProductProvider> */}
     </div>
   );
 }

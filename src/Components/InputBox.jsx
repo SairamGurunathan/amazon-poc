@@ -1,10 +1,10 @@
 import React from "react";
 import { FormControl } from "react-bootstrap";
 
-const InputBox = ({ placeholder, className, onChange, value}) => {
+const InputBox = ({ placeholder, className, onChange, value,type}) => {
   return (
     <>
-      <FormControl placeholder={placeholder} className={className} onChange={onChange} value={value}/>
+      <FormControl type={type} placeholder={placeholder} className={className} onChange={onChange} value={value}/>
     </>
   );
 };
