@@ -9,11 +9,10 @@ import ProductContext from '../Components/ProductContext';
 const SelectedProductPage = () => {
   const navigate = useNavigate();
   const { selectData, addToCart, setCount, count, quantity, setQuantity, setSubTotal } = useContext(ProductContext);
-  const [selectImage, setSelectImage] = useState(selectData?.images[0] || '');
+  const [selectImage, setSelectImage] = useState(selectData && (selectData?.images[0] || ''));
   
   const handleImgChange = (i) => {
-    setSelectImage(selectData?.images[i]);
-  };
+    setSelectImage(selectData?.images[i])};
 
   const handleCart = () => {
     const subtotal = selectData?.price * quantity;
@@ -24,6 +23,12 @@ const SelectedProductPage = () => {
     navigate('/cartlist');
     setQuantity(1);
   };
+
+  const handleBuyNow = ()=>{
+    const subtotal = selectData?.price * quantity;
+    setSubTotal(subtotal);
+    navigate('/checkout',{ state: { subtotal } })
+  }
   
   return (
     <Card className="">
@@ -72,22 +77,22 @@ const SelectedProductPage = () => {
                   title={quantity}
                   option={[1, 2, 3, 4, 5]}
                   className={'quantity-select ms-2'}
-                  onChange={(value) => setQuantity(value)}
+                  onChange={(event) => setQuantity(parseInt(event.target.value))}
                 />
               </p>
             </Col>
             <Col lg={4}>
               <div className="d-flex flex-column align-items-center gap-2 p-2 border border-2 h-100">
-                <h4 className='float-start '>₹{selectData?.price}</h4>
+                <h4 className='float-start '>₹{selectData?.price * quantity}</h4>
                 <ButtonTag
                   label={'Add to Cart'}
                   className={'bg-warning border-0 rounded-pill w-100 text-nowrap'}
                   onClick={handleCart}
                 />
                 <ButtonTag
-                  label={'Buy Now'}
+                  label={`Buy Now (${quantity} item)`}
                   className={'bg-success border-0 rounded-pill w-100'}
-                  onClick={()=>navigate('/checkout')}
+                  onClick={handleBuyNow}
                 />
               </div>
             </Col>

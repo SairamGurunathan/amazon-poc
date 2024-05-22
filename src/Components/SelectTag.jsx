@@ -2,7 +2,7 @@ import React from 'react';
 
 const SelectTag = ({ title, option, className, onChange }) => {
   const handleChange = (event) => {
-    onChange(Number(event.target.value));
+    onChange(event);
   };
 
   return (

@@ -8,7 +8,7 @@ import Cart from "../Assets/kettle-desaturated._CB424694257_.svg";
 
 const AddtoCartPage = () => {
   const navigate = useNavigate();
-  const { cartItems, setCartItems, count, setCount,subtotal, setSubtotal } = useContext(ProductContext);
+  const { cartItems, setCartItems, count, setCount,subtotal, setSubtotal, subTotal } = useContext(ProductContext);
 
   const calculateSubtotal = () => {
     let total = 0;
@@ -78,7 +78,7 @@ const AddtoCartPage = () => {
                             title={item.quantity}
                             option={[1, 2, 3, 4, 5]}
                             className={"quantity"}
-                            onChange={(value) => handleQuantityChange(index, value)}
+                            onChange={(event) => handleQuantityChange(index, parseInt(event.target.value))}
                           />
                           <span> | </span>
                           <Link
@@ -151,7 +151,7 @@ const AddtoCartPage = () => {
                     label={"Shop Now"}
                     variant={"outline-info"}
                     className={"text-dark mt-2"}
-                    onClick={() => navigate('/results')}
+                    onClick={() => {navigate('/results', { state: { subtotal: subTotal } })}}
                   />
                 </div>
               </CardBody>

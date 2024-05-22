@@ -3,9 +3,12 @@ import { Stepper, Step } from 'react-form-stepper';
 import ShippingAddress from './ShippingAddress';
 import Payment from './Payment';
 import Confirmation from './Confirmation';
+import { useContext } from 'react';
+import ProductContext from './ProductContext';
 
 const StepperCheckOut =()=> {
     const [activeStep, setActiveStep] = useState(0);
+    const {subTotal} = useContext(ProductContext)
     const [address, setAddress] = useState({
       name:'',
       address:'',
@@ -20,7 +23,7 @@ const StepperCheckOut =()=> {
     const renderStepContent = (step) => {
       switch (step) {
         case 0:
-          return <ShippingAddress nextStep={nextStep} setAddress={setAddress} address={address} />;
+          return <ShippingAddress nextStep={nextStep} setAddress={setAddress} address={address} subTotal={subTotal}/>;
         case 1:
           return <Payment nextStep={nextStep} setPaymentResponse={setPaymentResponse} />;
         case 2:

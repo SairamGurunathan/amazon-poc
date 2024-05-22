@@ -24,7 +24,7 @@ const Footer = () => {
         <div style={{ backgroundColor: "#232f3e" }} className="text-white">
           <Container>
             <Row>
-              {footerList?.map((option, index) => (
+              {footerList.length > 0 && footerList?.map((option, index) => (
                 <Col>
                   <ul key={index} className="footer-list my-5">
                     <h6 className="fw-bold">{option?.heading}</h6>
@@ -70,7 +70,7 @@ const Footer = () => {
         <div className="text-white footer-bottom">
           <Container>
             <Row className="py-4">
-              {AdditionalLink?.map((add, i) => (
+              {AdditionalLink.length > 0 && AdditionalLink?.map((add, i) => (
                 <Col lg={3} className="p-0">
                   <ul key={i} className="footer-list">
                     <li>
@@ -88,8 +88,8 @@ const Footer = () => {
               ))}
             </Row>
             <div className="d-flex flex-row align-items-center justify-content-center gap-2">
-              {policy?.map((term, i) => (
-                <Link className="text-decoration-none text-white link-hover">
+              {policy.length > 0 && policy?.map((term, i) => (
+                <Link className="text-decoration-none text-white link-hover" key={i}>
                   <small className="fs-12">{term}</small>
                 </Link>
               ))}

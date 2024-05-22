@@ -92,10 +92,14 @@ code {
   text-decoration: underline !important;
 }
 .card-link:hover{
-  color: red;
+  color: red !important;
+}
+.card-link:active{
+  font-weight: bold !important;
 }
 .menu:hover{
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
+  cursor: pointer;
 }
 .link-truncate {
   display: -webkit-box;

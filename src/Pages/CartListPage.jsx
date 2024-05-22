@@ -1,17 +1,26 @@
 import { Icon } from "@iconify/react";
 import React, { useContext } from "react";
 import { Card, CardBody, Col, Row } from "react-bootstrap";
-import ButtonTag from "../Components/ButtonTag";
 import { Link, useNavigate } from "react-router-dom";
 import ProductContext from "../Components/ProductContext";
+import ButtonTag from "../Components/ButtonTag";
 
 const CartListPage = () => {
   const navigate = useNavigate();
-  const { cartItems, setCount,subTotal, setSubTotal, setCartItems } = useContext(ProductContext)
+  const { cartItems, setCount, subTotal, setSubTotal, setCartItems } = useContext(ProductContext);
+
   const handleDeleteCart = () => {
-    setCartItems([]);
-    setCount(0);
-    setSubTotal(0);
+    if (cartItems.length > 0) {
+      const updatedCartItems = cartItems.slice(0, -1);
+      const lastItem = cartItems[cartItems.length - 1];
+      const updatedSubTotal = subTotal - (lastItem.price * lastItem.quantity);
+      const updatedCount = updatedCartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+      setCartItems(updatedCartItems);
+      setCount(updatedCount);
+      setSubTotal(updatedSubTotal);
+      navigate('/addToCart')
+    }
   };
 
   return (
@@ -21,7 +30,7 @@ const CartListPage = () => {
           <Card>
             <CardBody className="d-flex flex-row justify-content-center align-items-center gap-3">
               <img
-                src={cartItems?.length > 0 && cartItems[0]?.images[0]}
+                src={cartItems.length > 0 ? cartItems[0]?.images[0] : ""}
                 alt="cart"
                 style={{ width: "150px", height: "150px" }}
               />
@@ -32,22 +41,22 @@ const CartListPage = () => {
                     style={{ color: "#087e63" }}
                   />
                   Added to Cart
-                </h3> 
+                </h3>
                 <div>
-                <Link
-                  to={"/results"}
-                  className="text-decoration-none  link-hover card-link"
-                  onClick={handleDeleteCart}
-                >
-                  Delete
-                </Link>
-                <span>{' '} | {' '}</span>
-                <Link
-                  to={"/results"}
-                  className="text-decoration-none  link-hover card-link"
-                >
-                  Add items
-                </Link>
+                  <Link
+                    to={"/results"}
+                    className="text-decoration-none link-hover card-link"
+                    onClick={handleDeleteCart}
+                  >
+                    Delete
+                  </Link>
+                  <span>{' '} | {' '}</span>
+                  <Link
+                    to={"/results"}
+                    className="text-decoration-none link-hover card-link"
+                  >
+                    Add items
+                  </Link>
                 </div>
               </div>
             </CardBody>
@@ -56,7 +65,7 @@ const CartListPage = () => {
         <Col lg={6}>
           <Card className="h-100">
             <Row className="m-0">
-              <Col className="d-flex justify-content-center align-items-center ">
+              <Col className="d-flex justify-content-center align-items-center">
                 <p className="p-4 text-secondary">
                   Part of your order qualifies for{" "}
                   <span className="fw-bold text-secondary">FREE Delivery</span>.
@@ -72,15 +81,13 @@ const CartListPage = () => {
                   <div className="d-flex flex-column align-items-center gap-2 w-100">
                     <ButtonTag
                       label={"Proceed to Buy"}
-                      className={
-                        "bg-warning border-0 rounded-pill w-100 text-nowrap"
-                      }
-                      onClick={()=>navigate('/checkout')}
+                      className={"bg-warning border-0 rounded-pill w-100 text-nowrap"}
+                      onClick={() => navigate('/checkout', { state: { subtotal: subTotal } })}
                     />
                     <ButtonTag
                       label={"Go to cart"}
                       className={"bg-success border-0 rounded-pill w-100"}
-                      onClick={()=>navigate('/addToCart')}
+                      onClick={() => navigate('/addToCart')}
                     />
                   </div>
                 </CardBody>

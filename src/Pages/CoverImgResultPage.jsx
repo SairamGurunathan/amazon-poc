@@ -9,22 +9,27 @@ import Pagination from "../Components/Pagination";
 import ProductContext from "../Components/ProductContext";
 
 const CoverImgResultPage = () => {
-  const [allData, setAllData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  const [sortOption, setSortOption] = useState("Bestselling");
   const limitValue = 12;
-  const [category, setCategory] = useState([]);
-  const {selectData,setSelectData} = useContext(ProductContext)
-  const navigate = useNavigate()
+  const { selectData, setSelectData, allData, setAllData } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const offset = pageNumber * limitValue;
     const response = await axios.get(
       `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limitValue}`
     );
-    setAllData(response.data);
-  };
+    let sortedData = response.data;
 
+    if (sortOption === "Price: Low to High") {
+      sortedData = sortedData.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "Price: High to Low") {
+      sortedData = sortedData.sort((a, b) => b.price - a.price);
+    }
+    setAllData(sortedData);
+  };
   const allProducts = async () => {
     const product = await axios.get("https://api.escuelajs.co/api/v1/products");
     setTotalCount(product?.data?.length);
@@ -44,25 +49,22 @@ const CoverImgResultPage = () => {
         `https://api.escuelajs.co/api/v1/products/${id}`
       );
       setSelectData(response?.data);
-      window.scrollTo({top:'0'})
+      window.scrollTo({ top: '0' });
       navigate('/product');
     } catch (error) {
       console.error("Error fetching product details:", error);
     }
   };
 
-  const handleCategory = async (id) => {
-    const result = await axios.get(
-      `https://api.escuelajs.co/api/v1/categories/${id}/products`
-    );
-    setCategory(result?.data);
-  };
-
   useEffect(() => {
     fetchData();
     allProducts();
     // eslint-disable-next-line
-  }, [pageNumber]);
+  }, [pageNumber, sortOption]);
+
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value);
+  };
 
   return (
     <>
@@ -87,8 +89,8 @@ const CoverImgResultPage = () => {
         <div>
           <Row className="m-0">
             <Col>
-              <div className="d-flex flex-row align-items-center px-3 bg-white">
-                <span>1-24 of 616 results</span>
+              <div className="d-flex flex-row align-items-center px-3 bg-white py-2">
+                <span>1-{limitValue} of {totalCount} results</span>
                 <SelectTag
                   className={"w-25 ms-auto"}
                   title={"Bestselling"}
@@ -96,9 +98,8 @@ const CoverImgResultPage = () => {
                     "Bestselling",
                     "Price: Low to High",
                     "Price: High to Low",
-                    "Avg. Customer Review",
-                    "Newest Arrivals",
                   ]}
+                  onChange={(event)=>handleSortChange(event)}
                 />
               </div>
             </Col>
@@ -106,84 +107,42 @@ const CoverImgResultPage = () => {
         </div>
         <Row className="m-0">
           <Col lg={2}>
-            <SideBarList />
+            <SideBarList fetchData={fetchData} />
           </Col>
           <Col lg={10}>
             <Row>
-                <>
-                  {category.length > 0
-                    ? category.map((result, index) => (
-                        <Col lg={3} key={index}>
-                          <div
-                            className="card p-2 my-3 product-details"
-                            onClick={() => handleSelect(result?.id)}
-                          >
-                            <img
-                              src={result?.images[0]}
-                              alt={`Slide ${index + 1}`}
-                              style={{ width: "220px", height: "250px" }}
-                            />
-                            <div>
-                              <Link className="text-decoration-none card-link link-truncate">
-                                {result?.title}
-                              </Link>
-                            </div>
-                            <h4>₹{result?.price}</h4>
-                            <small className="des-truncate">
-                              {result?.description}
-                            </small>
-                          </div>
-                            <small className="mt-2">
-                            Category :{" "}
-                            <Link
-                              className="fs-6 fw-bold card-link text-decoration-none"
-                              onClick={()=>setCategory([])}
-                            >
-                              All Category
-                            </Link>
-                          </small>
-                        </Col>
-                      ))
-                    : allData.length > 0 && allData.map((result, index) => (
-                        <Col lg={3} key={index}>
-                          <div
-                            className="card p-2 my-3 product-details"
-                            onClick={() => handleSelect(result?.id)}
-                          >
-                            <img
-                              src={result?.images[0]}
-                              alt={`Slide ${index + 1}`}
-                              style={{ width: "220px", height: "250px" }}
-                            />
-                            <div>
-                              <Link className="text-decoration-none card-link link-truncate">
-                                {result?.title}
-                              </Link>
-                            </div>
-                            <h4>₹{result?.price}</h4>
-                            <small className="des-truncate">
-                              {result?.description}
-                            </small>
-                          </div>
-                          <small className="mt-2">
-                            Category :{" "}
-                            <Link
-                              className="fs-6 fw-bold card-link text-decoration-none"
-                              onClick={() =>
-                                handleCategory(result?.category?.id)
-                              }
-                            >
-                              {result?.category?.name}
-                            </Link>
-                          </small>
-                        </Col>
-                      ))}
-                </>
+              {allData.length > 0 && allData.map((result, index) => (
+                <Col lg={3} key={index}>
+                  <div
+                    className="card p-2 my-3 product-details"
+                    onClick={() => handleSelect(result?.id)}
+                  >
+                    <img
+                      src={result?.images[0]}
+                      alt={`Slide ${index + 1}`}
+                      style={{ width: "220px", height: "250px" }}
+                    />
+                    <div>
+                      <Link className="text-decoration-none card-link link-truncate">
+                        {result?.title}
+                      </Link>
+                    </div>
+                    <h4>₹{result?.price}</h4>
+                    <small className="des-truncate">
+                      {result?.description}
+                    </small>
+                    <small className="mt-2">
+                      Category:{" "}
+                      <span className="fw-bold">{result?.category?.name}</span>
+                    </small>
+                  </div>
+                </Col>
+              ))}
             </Row>
           </Col>
         </Row>
       </div>
-      {selectData ? null : (
+      {selectData && (
         <Pagination
           handlePageClick={handlePageClick}
           pageNumber={pageNumber}

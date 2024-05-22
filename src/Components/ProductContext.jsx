@@ -9,6 +9,8 @@ export const ProductProvider = ({ children }) => {
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
+  const [allData, setAllData] = useState([]);
+
 
   const addToCart = (item) => {
     setCartItems([...cartItems, item]);
@@ -29,6 +31,8 @@ export const ProductProvider = ({ children }) => {
         addToCart,
         subtotal,
         setSubtotal,
+        allData, 
+        setAllData
       }}
     >
       {children}

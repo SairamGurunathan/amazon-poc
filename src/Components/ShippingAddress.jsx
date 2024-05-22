@@ -6,7 +6,7 @@ import ProductContext from "./ProductContext";
 import { useNavigate } from "react-router-dom";
 
 const ShippingAddress = ({ nextStep, setAddress, address }) => {
-  const { subtotal } = useContext(ProductContext);
+  const { subtotal, subTotal } = useContext(ProductContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -63,7 +63,7 @@ const ShippingAddress = ({ nextStep, setAddress, address }) => {
             <CardBody>
               <div className="d-flex flex-column">
                 <h4 className="float-start">
-                  Subtotal : <span className="fw-bold">₹{subtotal}</span>
+                  Subtotal : <span className="fw-bold">₹{subtotal || subTotal}</span>
                 </h4>
                 <small className="fs-12">Choose a shipping address and payment method to calculate shipping, handling, and tax.</small>
               </div>
